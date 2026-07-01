@@ -1,16 +1,16 @@
-// قاعدة البيانات الهجينة للمطعم
+﻿// قاعدة البيانات الهجينة للمطعم
 // القراءة: localStorage (سريعة ومتزامنة) | الكتابة: localStorage + Supabase في الخلفية
 // يعتمد على supabase-config.js الذي يُحمَّل قبله في index.html
 
 const DEFAULT_SETTINGS = {
-  name: "مطعم البرج للمأكولات البحرية",
+  name: "أسماك أبو ناجي",
   logo: "🌊",
   bannerImage: "https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=1200&q=80",
   heroTitle: "أقوى طواجن وفسفور في مصر",
-  heroSubtitle: "طازة من البحر لطاولتك.. طعم إسكندراني على أصوله مع خلطة البرج السرية",
+  heroSubtitle: "طازة من البحر لطاولتك.. طعم إسكندراني على أصوله مع خلطة أسماك أبو ناجي السرية",
   whatsappNumber: "+201012345678",
   phoneNumber: "01012345678",
-  email: "info@elborj-seafood.com",
+  email: "info@abunaji-seafood.com",
   address: "طريق الكورنيش، بجوار قلعة قايتباي، الأنفوشي، الإسكندرية",
   workingHours: "يومياً من 12:00 ظهراً حتى 12:00 منتصف الليل",
   facebookLink: "https://facebook.com",
@@ -19,9 +19,9 @@ const DEFAULT_SETTINGS = {
   minimumOrder: 150,
   taxPercentage: 14,
   currency: "ج.م",
-  seoTitle: "مطعم البرج للمأكولات البحرية | أفضل مطعم سمك وسي فود في الإسكندرية",
+  seoTitle: "أسماك أبو ناجي | أفضل مطعم سمك وسي فود في الإسكندرية",
   seoDescription: "استمتع بأشهى المأكولات البحرية الطازجة، سمك بلطي وبوري ودنيس، طواجن سي فود بالكريمة، جمبري جامبو، شوربة سي فود مخلية. توصيل سريع في الإسكندرية.",
-  seoKeywords: "مطعم سمك, سي فود, الإسكندرية, جمبري, سمك بوري, سمك بلطي, طاجن سي فود, شوربة سي فود, مطعم البرج",
+  seoKeywords: "مطعم سمك, سي فود, الإسكندرية, جمبري, سمك بوري, سمك بلطي, طاجن سي فود, شوربة سي فود, مطعم أسماك أبو ناجي",
   deliveryAreas: [
     { name: "الأنفوشي والمنشية", fee: 20 },
     { name: "محطة الرمل والأزاريطة", fee: 25 },
@@ -210,12 +210,12 @@ const DEFAULT_PRODUCTS = [
 const DEFAULT_USERS = [
   {
     id: "u1",
-    email: "admin@elborj.com",
+    email: "admin@abunaji.com",
     password: "admin123",
     role: "admin",
-    name: "أحمد البرج (المدير)",
+    name: "أحمد أسماك أبو ناجي (المدير)",
     phone: "01012345678",
-    address: "مكتب الإدارة، مطعم البرج، الإسكندرية",
+    address: "مكتب الإدارة، مطعم أسماك أبو ناجي، الإسكندرية",
     suspended: false
   },
   {
@@ -233,7 +233,7 @@ const DEFAULT_USERS = [
 const DEFAULT_COUPONS = [
   { code: "EGYPT20", discountPercentage: 20, description: "خصم 20% بمناسبة الافتتاح" },
   { code: "FOSFOR10", discountPercentage: 10, description: "خصم 10% على جميع المأكولات" },
-  { code: "ELBORJ", discountPercentage: 15, description: "خصم خاص لزبائن مطعم البرج" }
+  { code: "ABUNAJI", discountPercentage: 15, description: "خصم خاص لزبائن مطعم أسماك أبو ناجي" }
 ];
 
 const DEFAULT_REVIEWS = [

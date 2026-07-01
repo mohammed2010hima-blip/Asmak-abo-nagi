@@ -1,4 +1,4 @@
-// ملف التشغيل والربط الرئيسي للمنصة (Orchestrator)
+﻿// ملف التشغيل والربط الرئيسي للمنصة (Orchestrator)
 // يربط قاعدة البيانات، المصادقة، السلة، والتنقل لتشكيل واجهة تفاعلية كاملة
 
 class App {
@@ -39,7 +39,7 @@ class App {
 
   // --- الوضع المظلم ---
   initTheme() {
-    const savedTheme = localStorage.getItem("elborj_theme");
+    const savedTheme = localStorage.getItem("abunaji_theme");
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     
     if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
@@ -51,7 +51,7 @@ class App {
 
   toggleTheme() {
     const isDark = document.body.classList.toggle("dark-theme");
-    localStorage.setItem("elborj_theme", isDark ? "dark" : "light");
+    localStorage.setItem("abunaji_theme", isDark ? "dark" : "light");
     this.showToast(isDark ? "تم تفعيل الوضع المظلم 🌙" : "تم تفعيل الوضع المضيء ☀️", "info");
   }
 
@@ -352,7 +352,7 @@ class App {
         if (isAdmin) {
           drawer.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
-              <span style="font-weight: 800; font-size: 1.2rem; color: var(--primary-color);">🌊 مطعم البرج (إدارة)</span>
+              <span style="font-weight: 800; font-size: 1.2rem; color: var(--primary-color);">🌊 مطعم أسماك أبو ناجي (إدارة)</span>
               <button onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
             </div>
             <a href="#/admin/dashboard" class="mobile-nav-link" onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')">📊 لوحة التحكم</a>
@@ -367,7 +367,7 @@ class App {
         } else if (user) {
           drawer.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
-              <span style="font-weight: 800; font-size: 1.2rem; color: var(--primary-color);">🌊 مطعم البرج</span>
+              <span style="font-weight: 800; font-size: 1.2rem; color: var(--primary-color);">🌊 مطعم أسماك أبو ناجي</span>
               <button onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
             </div>
             <a href="#/" class="mobile-nav-link" onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')">🏠 الرئيسية</a>
@@ -382,7 +382,7 @@ class App {
         } else {
           drawer.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
-              <span style="font-weight: 800; font-size: 1.2rem; color: var(--primary-color);">🌊 مطعم البرج</span>
+              <span style="font-weight: 800; font-size: 1.2rem; color: var(--primary-color);">🌊 مطعم أسماك أبو ناجي</span>
               <button onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
             </div>
             <a href="#/" class="mobile-nav-link" onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')">🏠 الرئيسية</a>
@@ -543,7 +543,7 @@ class App {
         <div class="container">
           <div class="section-title-wrap">
             <h2 class="section-title">آراء زبائننا 🗣️</h2>
-            <p class="section-subtitle">ماذا يقول عشاق السي فود والفسفور عن مطعم البرج</p>
+            <p class="section-subtitle">ماذا يقول عشاق السي فود والفسفور عن مطعم أسماك أبو ناجي</p>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 30px;">
             ${reviews.map(r => `
@@ -991,13 +991,13 @@ class App {
 
   // --- المفضلة ---
   isFavorite(productId) {
-    const favs = JSON.parse(localStorage.getItem("elborj_favorites")) || [];
+    const favs = JSON.parse(localStorage.getItem("abunaji_favorites")) || [];
     return favs.includes(productId);
   }
 
   toggleFavorite(productId) {
     event.stopPropagation();
-    let favs = JSON.parse(localStorage.getItem("elborj_favorites")) || [];
+    let favs = JSON.parse(localStorage.getItem("abunaji_favorites")) || [];
     const index = favs.indexOf(productId);
     
     if (index !== -1) {
@@ -1008,7 +1008,7 @@ class App {
       this.showToast("تم الإضافة للمفضلة ♥", "success");
     }
 
-    localStorage.setItem("elborj_favorites", JSON.stringify(favs));
+    localStorage.setItem("abunaji_favorites", JSON.stringify(favs));
     
     // تحديث التنشيط البصري فوراً
     const btn = document.querySelector(`#card-${productId} .fav-btn`);
@@ -1681,7 +1681,7 @@ class App {
 
     try {
       window.auth.register(name, email, phone, pass, address);
-      this.showToast("تم إنشاء الحساب بنجاح! أهلاً بك في مطعم البرج. 🎉", "success");
+      this.showToast("تم إنشاء الحساب بنجاح! أهلاً بك في مطعم أسماك أبو ناجي. 🎉", "success");
       window.router.navigateTo("#/account");
     } catch (err) {
       this.showToast(err.message, "error");
@@ -1714,7 +1714,7 @@ class App {
           <table cellpadding="0" cellspacing="0">
             <tr style="border-bottom: 2px solid #333;">
               <td colspan="2" style="font-size: 1.5rem; font-weight: bold; padding-bottom: 20px;">
-                🌊 مطعم البرج للمأكولات البحرية
+                🌊 مطعم أسماك أبو ناجي للمأكولات البحرية
               </td>
             </tr>
             <tr>

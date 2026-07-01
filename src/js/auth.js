@@ -1,8 +1,8 @@
-// نظام المصادقة والحسابات - يدير الجلسات والتحقق من المدخلات
+﻿// نظام المصادقة والحسابات - يدير الجلسات والتحقق من المدخلات
 
 class AuthSystem {
   constructor() {
-    this.currentUserKey = "elborj_current_user";
+    this.currentUserKey = "abunaji_current_user";
   }
 
   getCurrentUser() {

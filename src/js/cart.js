@@ -1,10 +1,10 @@
-// نظام سلة المشتريات والعمليات الحسابية - الحفظ التلقائي في localStorage
+﻿// نظام سلة المشتريات والعمليات الحسابية - الحفظ التلقائي في localStorage
 
 class CartSystem {
   constructor() {
-    this.cartKey = "elborj_cart";
-    this.couponKey = "elborj_active_coupon";
-    this.deliveryAreaKey = "elborj_delivery_area";
+    this.cartKey = "abunaji_cart";
+    this.couponKey = "abunaji_active_coupon";
+    this.deliveryAreaKey = "abunaji_delivery_area";
     this.items = JSON.parse(localStorage.getItem(this.cartKey)) || [];
     this.activeCoupon = JSON.parse(localStorage.getItem(this.couponKey)) || null;
     this.selectedDeliveryArea = JSON.parse(localStorage.getItem(this.deliveryAreaKey)) || null;
