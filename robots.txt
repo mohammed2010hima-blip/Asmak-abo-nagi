@@ -1,0 +1,12 @@
+# ملف robots.txt لمطعم البرج للمأكولات البحرية
+# يسمح لجميع محركات البحث بالزيارة والأرشفة
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# تجاهل محركات البحث من الوصول لصفحات الأدمن
+Disallow: /#/admin/
+
+# خريطة الموقع
+Sitemap: https://elborj-seafood.com/sitemap.xml

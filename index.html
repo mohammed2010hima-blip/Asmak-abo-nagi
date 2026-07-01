@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e05a36">
+
+  <!-- SEO Meta Tags الأساسية -->
+  <title>مطعم البرج للمأكولات البحرية | أفضل مطعم سمك وسي فود في الإسكندرية</title>
+  <meta name="description" content="استمتع بأشهى المأكولات البحرية الطازجة، سمك بلطي وبوري ودنيس، طواجن سي فود بالكريمة، جمبري جامبو، شوربة سي فود مخلية. توصيل سريع في الإسكندرية.">
+  <meta name="keywords" content="مطعم سمك, سي فود, الإسكندرية, جمبري, سمك بوري, سمك بلطي, طاجن سي فود, شوربة سي فود, مطعم البرج">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://elborj-seafood.com/">
+  <meta name="author" content="مطعم البرج للمأكولات البحرية">
+
+  <!-- Open Graph للمشاركة على السوشيال ميديا -->
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="مطعم البرج للمأكولات البحرية | سي فود وأسماك طازجة">
+  <meta property="og:description" content="أقوى طواجن سي فود إسكندرانية وأسماك طازجة من البحر مباشرة. جمبري مخلي، بوري سنجاري، شوربة سي فود بالكريمة.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://elborj-seafood.com/">
+  <meta property="og:site_name" content="مطعم البرج">
+  <meta property="og:locale" content="ar_EG">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="مطعم البرج للمأكولات البحرية">
+  <meta name="twitter:description" content="أفضل مطعم سي فود وأسماك طازجة في الإسكندرية. توصيل سريع لجميع المناطق.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Google Fonts: Cairo + Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- ملف التنسيق العام -->
+  <link rel="stylesheet" href="src/css/style.css">
+
+  <!-- Schema.org JSON-LD (سيتم تحديثه ديناميكياً من app.js) -->
+  <script type="application/ld+json" id="json-ld-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "مطعم البرج للمأكولات البحرية",
+    "image": "https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=1200&q=80",
+    "telephone": "01012345678",
+    "email": "info@elborj-seafood.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "طريق الكورنيش، بجوار قلعة قايتباي، الأنفوشي",
+      "addressLocality": "Alexandria",
+      "addressCountry": "EG"
+    },
+    "servesCuisine": "Seafood",
+    "priceRange": "$$",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "12:00",
+      "closes": "23:59"
+    }
+  }
+  </script>
+
+  <style>
+    /* تنسيقات إضافية خاصة بهيكل الصفحة لإكمال الـ style.css */
+
+    /* شاشة التحميل (Loading Screen) */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #0d1b2a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-logo {
+      font-size: 4rem;
+      animation: loadingWave 1s infinite ease-in-out alternate;
+      margin-bottom: 15px;
+    }
+
+    .loading-text {
+      color: #e05a36;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .loading-sub {
+      color: #64748b;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .loading-bar-wrap {
+      width: 200px;
+      height: 4px;
+      background: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .loading-bar-fill {
+      height: 100%;
+      background: linear-gradient(to left, #0d9488, #e05a36);
+      border-radius: 10px;
+      animation: loadingBarGrow 1.5s ease-in-out forwards;
+    }
+
+    @keyframes loadingWave {
+      from { transform: translateY(0) rotate(-10deg); }
+      to   { transform: translateY(-15px) rotate(10deg); }
+    }
+
+    @keyframes loadingBarGrow {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+
+    /* القائمة المنبثقة للموبايل */
+    .mobile-nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      z-index: 900;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-nav-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100%;
+      background: var(--surface-color);
+      z-index: 950;
+      padding: 30px 20px;
+      border-left: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mobile-nav-overlay.open .mobile-nav-drawer {
+      transform: translateX(0);
+    }
+
+    .mobile-nav-link {
+      padding: 15px 20px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-color);
+      border-radius: var(--radius-sm);
+      display: block;
+      transition: var(--transition);
+    }
+
+    .mobile-nav-link:hover {
+      background: var(--primary-glow);
+      color: var(--primary-color);
+    }
+
+    /* زر الواتساب العائم */
+    #whatsapp-float-btn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: floatPulse 2.5s ease-in-out infinite;
+    }
+
+    #whatsapp-float-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    }
+
+    @keyframes floatPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+      50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7); }
+    }
+
+    /* زر العودة للأعلى */
+    #scroll-top-btn {
+      position: fixed;
+      bottom: 100px;
+      left: 30px;
+      width: 44px;
+      height: 44px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      z-index: 800;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    #scroll-top-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* تحسينات الكارد على الشاشات الصغيرة */
+    @media (max-width: 600px) {
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+      .account-layout,
+      .checkout-layout,
+      .menu-page-layout {
+        grid-template-columns: 1fr;
+      }
+      .tracking-stepper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .tracking-stepper::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- شاشة التحميل -->
+  <div id="loading-screen" role="status" aria-label="جاري تحميل الموقع">
+    <div class="loading-logo">🌊</div>
+    <div class="loading-text">مطعم البرج</div>
+    <div class="loading-sub">جاري تحضير أشهى الوجبات البحرية...</div>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- تطبيق SPA الرئيسي -->
+  <div id="app">
+    <!-- الهيدر الثابت -->
+    <header role="banner">
+      <div class="container header-container">
+        <!-- الشعار والاسم -->
+        <div class="logo-section" onclick="window.location.hash='#/';" role="link" aria-label="الرئيسية">
+          <span class="logo-icon" aria-hidden="true" id="header-logo-icon">🌊</span>
+          <span id="header-restaurant-name">مطعم البرج</span>
+        </div>
+
+        <!-- شريط التنقل -->
+        <nav id="main-nav" role="navigation" aria-label="القائمة الرئيسية">
+          <a href="#/" class="nav-link active">الرئيسية</a>
+          <a href="#/menu" class="nav-link">المنيو</a>
+          <a href="#/account" class="nav-link">حسابي</a>
+        </nav>
+
+        <!-- أزرار الأيقونات -->
+        <div class="header-actions">
+          <!-- تبديل الوضع المظلم/المضيء -->
+          <button class="action-btn" id="theme-toggle-btn" title="تبديل الوضع المظلم/المضيء" aria-label="تبديل الوضع">🌙</button>
+
+          <!-- أيقونة الإشعارات -->
+          <div style="position: relative;">
+            <button class="action-btn" id="notif-toggle-btn" title="الإشعارات" aria-label="الإشعارات">🔔
+              <span class="badge" id="notif-count-badge" style="display: none;">0</span>
+            </button>
+            <div class="notif-dropdown" id="notif-dropdown" role="dialog" aria-label="الإشعارات">
+              <div class="notif-dropdown-header">
+                <span>الإشعارات</span>
+                <button onclick="document.getElementById('notif-dropdown').classList.remove('open')" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+              </div>
+              <div class="notif-list-items" id="notif-list-items">
+                <div class="notif-item" style="text-align: center; color: var(--text-muted);">لا توجد إشعارات حالياً.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- أيقونة سلة المشتريات -->
+          <div style="position: relative;">
+            <button class="action-btn" id="cart-toggle-btn" title="سلة المشتريات" aria-label="سلة المشتريات">🛒
+              <span class="badge" id="cart-count-badge" style="display: none;">0</span>
+            </button>
+          </div>
+
+          <!-- أيقونة الحساب الشخصي -->
+          <button class="action-btn" id="account-toggle-btn" title="الحساب الشخصي" aria-label="الحساب الشخصي">🔑</button>
+
+          <!-- زر القائمة للموبايل -->
+          <button class="action-btn menu-toggle" id="mobile-menu-toggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- القائمة المنبثقة للموبايل -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-label="القائمة المتنقلة">
+      <div class="mobile-nav-drawer">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
+          <span style="font-weight: 800; font-size: 1.2rem; color: var(--primary-color);">🌊 مطعم البرج</span>
+          <button onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+        </div>
+        <a href="#/" class="mobile-nav-link" onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')">🏠 الرئيسية</a>
+        <a href="#/menu" class="mobile-nav-link" onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')">🦐 المنيو</a>
+        <a href="#/account" class="mobile-nav-link" onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')">👤 حسابي</a>
+        <a href="#/track-order" class="mobile-nav-link" onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')">📦 تتبع الطلب</a>
+        <a href="#/login" class="mobile-nav-link" onclick="document.getElementById('mobile-nav-overlay').classList.remove('open')">🔑 تسجيل الدخول</a>
+        <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color);">
+          <button class="btn btn-primary" onclick="window.app && window.app.toggleTheme(); document.getElementById('mobile-nav-overlay').classList.remove('open')" style="width: 100%;">🌙 تبديل الوضع المظلم</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- محتوى الصفحة الرئيسي (يتغير ديناميكياً) -->
+    <main id="router-view" role="main" aria-live="polite">
+      <!-- سيتم حقن محتوى الصفحة هنا -->
+    </main>
+
+    <!-- درج سلة المشتريات المنبثق -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay" role="dialog" aria-label="سلة المشتريات">
+      <div class="cart-drawer">
+        <div class="cart-header">
+          <h3 style="font-weight: 800; font-size: 1.2rem;">سلة المشتريات 🛒</h3>
+          <button id="close-cart-btn" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);" aria-label="إغلاق السلة">&times;</button>
+        </div>
+        <div class="cart-items-list" id="cart-items-list-container">
+          <!-- سيتم حقن المنتجات هنا ديناميكياً -->
+        </div>
+        <div class="cart-footer" id="cart-footer-container" style="display: none;">
+          <!-- سيتم حقن الحسابات هنا -->
+        </div>
+      </div>
+    </div>
+
+    <!-- المودال/النافذة المنبثقة لتفاصيل المنتج وعمليات الإدمن -->
+    <div class="modal-overlay" id="product-detail-modal" role="dialog" aria-label="تفاصيل المنتج">
+      <!-- سيتم حقن المحتوى ديناميكياً -->
+    </div>
+
+    <!-- تذييل الصفحة (Footer) -->
+    <footer role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col footer-about">
+            <h3>🌊 مطعم البرج</h3>
+            <p id="footer-about-text">أقدم لك أشهى وأطيب المأكولات البحرية الطازجة بطريقة إسكندرانية أصيلة. من البحر للطاولة مباشرة، بالهنا والشفا!</p>
+            <div class="social-links">
+              <a href="#" class="social-icon" aria-label="فيسبوك">f</a>
+              <a href="#" class="social-icon" aria-label="إنستغرام">📸</a>
+              <a href="#" class="social-icon" aria-label="واتساب">💬</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>الروابط السريعة</h3>
+            <ul class="footer-links">
+              <li><a href="#/">الرئيسية</a></li>
+              <li><a href="#/menu">منيو المطعم</a></li>
+              <li><a href="#/account">حسابي وطلباتي</a></li>
+              <li><a href="#/login">تسجيل الدخول</a></li>
+              <li><a href="#/register">إنشاء حساب</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>أقسام المطعم</h3>
+            <ul class="footer-links" id="footer-categories-list">
+              <li><a href="#/menu">الأسماك الطازجة</a></li>
+              <li><a href="#/menu">الطواجن الفسفورية</a></li>
+              <li><a href="#/menu">المشاوي والمقالي</a></li>
+              <li><a href="#/menu">الشوربة والأرز</a></li>
+              <li><a href="#/menu">السلطات والمشروبات</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>تواصل معنا</h3>
+            <ul class="footer-links">
+              <li id="footer-phone">📞 01012345678</li>
+              <li id="footer-email">✉️ info@elborj-seafood.com</li>
+              <li id="footer-address">📍 الكورنيش، الأنفوشي، الإسكندرية</li>
+              <li id="footer-hours">🕐 يومياً من 12م حتى 12م</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p id="footer-copyright">© 2026 مطعم البرج للمأكولات البحرية. جميع الحقوق محفوظة 🌊</p>
+          <p style="margin-top: 8px; font-size: 0.75rem; color: #4b5563;">منصة إدارة المطعم المصري | تم تطويرها بتقنيات HTML5 & Vanilla JavaScript</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- حاوية التنبيهات المنبثقة (Toasts) -->
+    <div class="toast-container" id="toast-container" aria-live="assertive" role="alert"></div>
+
+    <!-- زر الواتساب العائم -->
+    <a href="https://wa.me/+201012345678" id="whatsapp-float-btn" target="_blank" rel="noopener noreferrer" title="تواصل معنا عبر واتساب" aria-label="واتساب">💬</a>
+
+    <!-- زر العودة للأعلى -->
+    <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="العودة للأعلى" aria-label="العودة لأعلى الصفحة">↑</button>
+  </div>
+
+  <!-- =========================================
+       تحميل السكريبتات بالترتيب الصحيح
+       =========================================  -->
+
+  <!-- 0. Supabase JS Client (من CDN - يجب أن يكون أولاً) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+  <!-- 0.5 إعداد Supabase وطبقة المزامنة (قبل db.js) -->
+  <script src="src/js/supabase-config.js"></script>
+
+  <!-- 1. قاعدة البيانات أولاً -->
+  <script src="src/js/db.js"></script>
+
+  <!-- 2. نظام المصادقة والحسابات -->
+  <script src="src/js/auth.js"></script>
+
+  <!-- 3. سلة المشتريات -->
+  <script src="src/js/cart.js"></script>
+
+  <!-- 4. مكتبة الرسوم البيانية -->
+  <script src="src/js/charts.js"></script>
+
+  <!-- 5. موجه الصفحات -->
+  <script src="src/js/router.js"></script>
+
+  <!-- 6. التطبيق الرئيسي (آخر ما يُحمّل) -->
+  <script src="src/js/app.js"></script>
+
+  <!-- سكريبت التهيئة والأحداث العامة (مدمج مباشرة هنا لسرعة التنفيذ) -->
+  <script>
+    "use strict";
+
+    // --- إخفاء شاشة التحميل بعد جاهزية الصفحة ---
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const ls = document.getElementById("loading-screen");
+        if (ls) {
+          ls.style.opacity = "0";
+          ls.style.pointerEvents = "none";
+          setTimeout(() => ls.remove(), 500);
+        }
+      }, 1500); // وقت كافٍ لتحميل الخطوط والأصول
+    });
+
+    // --- تحديث معلومات التذييل من الإعدادات بعد التحميل ---
+    window.addEventListener("load", () => {
+      if (typeof window.db !== "undefined") {
+        const s = window.db.getSettings();
+
+        // تحديث اللوجو في الهيدر
+        const logoEl = document.getElementById("header-logo-icon");
+        if (logoEl) logoEl.textContent = s.logo;
+
+        const nameEl = document.getElementById("header-restaurant-name");
+        if (nameEl) nameEl.textContent = s.name;
+
+        // تحديث بيانات التذييل
+        const footerPhone = document.getElementById("footer-phone");
+        if (footerPhone) footerPhone.textContent = `📞 ${s.phoneNumber}`;
+
+        const footerEmail = document.getElementById("footer-email");
+        if (footerEmail) footerEmail.textContent = `✉️ ${s.email}`;
+
+        const footerAddress = document.getElementById("footer-address");
+        if (footerAddress) footerAddress.textContent = `📍 ${s.address}`;
+
+        const footerHours = document.getElementById("footer-hours");
+        if (footerHours) footerHours.textContent = `🕐 ${s.workingHours}`;
+
+        // تحديث رابط الواتساب
+        const waBtn = document.getElementById("whatsapp-float-btn");
+        if (waBtn) waBtn.href = `https://wa.me/${s.whatsappNumber.replace('+', '')}`;
+
+        // تحديث قائمة الأقسام في الفوتر
+        const catList = document.getElementById("footer-categories-list");
+        if (catList) {
+          catList.innerHTML = window.db.getCategories().map(c => `
+            <li><a href="#/menu" onclick="window.app && (window.app.activeFilters.categoryId = '${c.id}');">${c.name}</a></li>
+          `).join("");
+        }
+
+        // تحديث أيقونة التبديل بناءً على الوضع الحالي
+        const themeBtn = document.getElementById("theme-toggle-btn");
+        if (themeBtn) {
+          themeBtn.textContent = document.body.classList.contains("dark-theme") ? "☀️" : "🌙";
+        }
+      }
+    });
+
+    // --- تحديث أيقونة الوضع المظلم عند التبديل ---
+    window.addEventListener("auth_state_change", () => {
+      const themeBtn = document.getElementById("theme-toggle-btn");
+      if (themeBtn) {
+        themeBtn.textContent = document.body.classList.contains("dark-theme") ? "☀️" : "🌙";
+      }
+    });
+
+    // تحديث الأيقونة بعد تبديل الثيم
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("#theme-toggle-btn")) {
+        setTimeout(() => {
+          const themeBtn = document.getElementById("theme-toggle-btn");
+          if (themeBtn) {
+            themeBtn.textContent = document.body.classList.contains("dark-theme") ? "☀️" : "🌙";
+          }
+        }, 50);
+      }
+    });
+
+    // --- زر القائمة للموبايل ---
+    document.addEventListener("click", (e) => {
+      const mobileToggle = e.target.closest("#mobile-menu-toggle");
+      if (mobileToggle) {
+        const overlay = document.getElementById("mobile-nav-overlay");
+        overlay.classList.toggle("open");
+        mobileToggle.setAttribute("aria-expanded", overlay.classList.contains("open") ? "true" : "false");
+      }
+
+      // إغلاق عند الضغط على الخلفية
+      if (e.target.id === "mobile-nav-overlay") {
+        e.target.classList.remove("open");
+        document.getElementById("mobile-menu-toggle").setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // --- زر العودة للأعلى ---
+    window.addEventListener("scroll", () => {
+      const btn = document.getElementById("scroll-top-btn");
+      if (btn) {
+        if (window.scrollY > 300) {
+          btn.classList.add("visible");
+        } else {
+          btn.classList.remove("visible");
+        }
+      }
+    });
+
+    // --- مراقبة تغييرات الإعدادات لتحديث الفوتر والهيدر فوراً ---
+    window.addEventListener("db_change_restaurant_settings", (e) => {
+      const s = e.detail;
+      if (!s) return;
+
+      const logoEl = document.getElementById("header-logo-icon");
+      if (logoEl) logoEl.textContent = s.logo;
+
+      const nameEl = document.getElementById("header-restaurant-name");
+      if (nameEl) nameEl.textContent = s.name;
+
+      const footerPhone = document.getElementById("footer-phone");
+      if (footerPhone) footerPhone.textContent = `📞 ${s.phoneNumber}`;
+
+      const footerEmail = document.getElementById("footer-email");
+      if (footerEmail) footerEmail.textContent = `✉️ ${s.email}`;
+
+      const footerAddress = document.getElementById("footer-address");
+      if (footerAddress) footerAddress.textContent = `📍 ${s.address}`;
+
+      const footerHours = document.getElementById("footer-hours");
+      if (footerHours) footerHours.textContent = `🕐 ${s.workingHours}`;
+
+      // تحديث SEO فوراً
+      document.title = s.seoTitle;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.content = s.seoDescription;
+      const metaKeys = document.querySelector('meta[name="keywords"]');
+      if (metaKeys) metaKeys.content = s.seoKeywords;
+    });
+
+    // --- إمكانية الوصول (Keyboard Navigation) ---
+    document.addEventListener("keydown", (e) => {
+      // ESC لإغلاق المودالات والسلة والقوائم
+      if (e.key === "Escape") {
+        const modal = document.getElementById("product-detail-modal");
+        if (modal && modal.classList.contains("open")) {
+          modal.classList.remove("open");
+        }
+        const cart = document.getElementById("cart-drawer-overlay");
+        if (cart && cart.classList.contains("open")) {
+          cart.classList.remove("open");
+        }
+        const mobileNav = document.getElementById("mobile-nav-overlay");
+        if (mobileNav && mobileNav.classList.contains("open")) {
+          mobileNav.classList.remove("open");
+        }
+        const notifDrop = document.getElementById("notif-dropdown");
+        if (notifDrop && notifDrop.classList.contains("open")) {
+          notifDrop.classList.remove("open");
+        }
+      }
+    });
+
+    // --- حماية من XSS: وظيفة تنظيف المدخلات ---
+    window.sanitizeHtml = function(str) {
+      const div = document.createElement("div");
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    };
+
+    // --- تسجيل Service Worker للـ PWA (إن أردنا استخدامه مستقبلاً) ---
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        // navigator.serviceWorker.register("/sw.js").catch(() => {});
+        // معطّل حالياً لعدم وجود ملف sw.js، يمكن تفعيله لاحقاً
+      });
+    }
+  </script>
+</body>
+</html>
