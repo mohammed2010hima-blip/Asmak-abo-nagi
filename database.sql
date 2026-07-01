@@ -1,5 +1,5 @@
--- ============================================================
--- قاعدة بيانات مطعم البرج للمأكولات البحرية
+﻿-- ============================================================
+-- قاعدة بيانات مطعم أسماك أبو ناجي للمأكولات البحرية
 -- تشغيل هذا الملف في Supabase SQL Editor
 -- ============================================================
 
@@ -191,14 +191,14 @@ CREATE TRIGGER settings_updated_at
 
 -- إعدادات المطعم
 INSERT INTO settings (data) VALUES ('{
-  "name": "مطعم البرج للمأكولات البحرية",
+  "name": "مطعم أسماك أبو ناجي للمأكولات البحرية",
   "logo": "🌊",
   "bannerImage": "https://images.unsplash.com/photo-1551248429-40975aa4de74?auto=format&fit=crop&w=1200&q=80",
   "heroTitle": "أقوى طواجن وفسفور في مصر",
-  "heroSubtitle": "طازة من البحر لطاولتك.. طعم إسكندراني على أصوله مع خلطة البرج السرية",
+  "heroSubtitle": "طازة من البحر لطاولتك.. طعم إسكندراني على أصوله مع خلطة أسماك أبو ناجي السرية",
   "whatsappNumber": "+201012345678",
   "phoneNumber": "01012345678",
-  "email": "info@elborj-seafood.com",
+  "email": "info@abunaji-seafood.com",
   "address": "طريق الكورنيش، بجوار قلعة قايتباي، الأنفوشي، الإسكندرية",
   "workingHours": "يومياً من 12:00 ظهراً حتى 12:00 منتصف الليل",
   "facebookLink": "https://facebook.com",
@@ -207,9 +207,9 @@ INSERT INTO settings (data) VALUES ('{
   "minimumOrder": 150,
   "taxPercentage": 14,
   "currency": "ج.م",
-  "seoTitle": "مطعم البرج للمأكولات البحرية | أفضل مطعم سمك وسي فود في الإسكندرية",
+  "seoTitle": "مطعم أسماك أبو ناجي للمأكولات البحرية | أفضل مطعم سمك وسي فود في الإسكندرية",
   "seoDescription": "استمتع بأشهى المأكولات البحرية الطازجة - سمك بلطي وبوري ودنيس وطواجن سي فود وجمبري جامبو. توصيل سريع في الإسكندرية.",
-  "seoKeywords": "مطعم سمك, سي فود, الإسكندرية, جمبري, سمك بوري, طاجن سي فود, مطعم البرج",
+  "seoKeywords": "مطعم سمك, سي فود, الإسكندرية, جمبري, سمك بوري, طاجن سي فود, مطعم أسماك أبو ناجي",
   "deliveryAreas": [
     {"name": "الأنفوشي والمنشية", "fee": 20},
     {"name": "محطة الرمل والأزاريطة", "fee": 25},
@@ -244,14 +244,14 @@ INSERT INTO products (id, name, category_id, description, price, discount_price,
 
 -- المستخدمون الافتراضيون
 INSERT INTO users (id, email, password, role, name, phone, address) VALUES
-('u1', 'admin@elborj.com', 'admin123', 'admin', 'أحمد البرج (المدير)', '01012345678', 'مكتب الإدارة - مطعم البرج - الإسكندرية'),
+('u1', 'admin@abunaji.com', 'admin123', 'admin', 'أحمد أسماك أبو ناجي (المدير)', '01012345678', 'مكتب الإدارة - مطعم أسماك أبو ناجي - الإسكندرية'),
 ('u2', 'user@example.com', 'user123', 'user', 'محمد المصري', '01234567890', '15 شارع طلعت حرب - وسط البلد - القاهرة');
 
 -- الكوبونات
 INSERT INTO coupons (code, discount_percentage, description) VALUES
 ('EGYPT20', 20, 'خصم 20% بمناسبة الافتتاح'),
 ('FOSFOR10', 10, 'خصم 10% على جميع المأكولات'),
-('ELBORJ', 15, 'خصم خاص لزبائن مطعم البرج');
+('ABUNAJI', 15, 'خصم خاص لزبائن مطعم أسماك أبو ناجي');
 
 -- التقييمات
 INSERT INTO reviews (id, product_id, user_name, rating, comment, date, approved) VALUES

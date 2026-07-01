@@ -1,4 +1,4 @@
-# ملف robots.txt لمطعم البرج للمأكولات البحرية
+﻿# ملف robots.txt لمطعم أسماك أبو ناجي للمأكولات البحرية
 # يسمح لجميع محركات البحث بالزيارة والأرشفة
 
 User-agent: *
@@ -9,4 +9,4 @@ Disallow: /admin/
 Disallow: /#/admin/
 
 # خريطة الموقع
-Sitemap: https://elborj-seafood.com/sitemap.xml
+Sitemap: https://abunaji-seafood.com/sitemap.xml
