@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // إعداد Supabase Client وطبقة الربط بقاعدة البيانات الحقيقية
 // يعمل كـ Singleton - يُستخدم من جميع ملفات المشروع
 // ============================================================
@@ -26,13 +26,127 @@ class SupabaseDB {
     this.supabase = _supabase;
     this.ready = false;
     this.readyCallbacks = [];
+    this.dbNotInitialized = false;
+    this.missingTables = [];
+  }
+
+  // التحقق من وجود جدول معين في قاعدة البيانات لمنع أخطاء الـ schema cache
+  async checkTableExists(tableName) {
+    try {
+      const { error } = await this.supabase.from(tableName).select("*").limit(0);
+      if (error) {
+        if (error.code === "PGRST205" || 
+            (error.message && error.message.includes("Could not find the table")) ||
+            (error.message && error.message.includes("does not exist"))) {
+          return false;
+        }
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // عرض إشعار بارز في حال كانت الجداول مفقودة
+  showInitErrorNotification() {
+    const renderBanner = () => {
+      const existingBanner = document.getElementById("db-init-error-banner");
+      if (existingBanner) return;
+
+      const banner = document.createElement("div");
+      banner.id = "db-init-error-banner";
+      banner.style.cssText = `
+        background: linear-gradient(135deg, #e05a36 0%, #be123c 100%);
+        color: white;
+        padding: 16px 24px;
+        text-align: right;
+        font-family: 'Cairo', sans-serif;
+        font-size: 0.95rem;
+        position: relative;
+        z-index: 10000;
+        box-shadow: 0 4px 20px rgba(224, 90, 54, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      `;
+
+      banner.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.4rem;">⚠️</span>
+          <div>
+            <strong style="font-weight: 700;">قاعدة البيانات غير مهيأة!</strong>
+            <span style="opacity: 0.9; margin-right: 5px;">قاعدة بيانات Supabase متصلة ولكنها لا تحتوي على الجداول المطلوبة. يرجى تهيئتها لتشغيل الموقع بشكل صحيح.</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button id="db-run-init-instructions-btn" style="
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+          ">طريقة التهيئة</button>
+        </div>
+      `;
+
+      const btn = banner.querySelector("#db-run-init-instructions-btn");
+      if (btn) {
+        btn.addEventListener("click", () => {
+          alert(`كيفية تهيئة قاعدة البيانات:
+1. افتح لوحة تحكم Supabase الخاصة بك.
+2. اذهب إلى SQL Editor.
+3. أنشئ استعلاماً جديداً (New Query).
+4. انسخ محتويات ملف "schema.sql" الموجود في مجلد المشروع والصقها هناك.
+5. اضغط على Run لتنفيذ الاستعلام وتهيئة الجداول بالكامل.
+أو قم بتشغيل سكريبت التهيئة التلقائي باستخدام Node.js:
+node init-db.js`);
+        });
+      }
+
+      document.body.prepend(banner);
+    };
+
+    if (document.body) {
+      renderBanner();
+    } else {
+      window.addEventListener("DOMContentLoaded", renderBanner);
+    }
   }
 
   // -------------------------------------------------------
   // تحميل كل البيانات من Supabase إلى localStorage عند البدء
   // -------------------------------------------------------
   async loadAllFromSupabase() {
+    this.dbNotInitialized = false;
+    this.missingTables = [];
+    const requiredTables = ["settings", "categories", "products", "users", "coupons", "orders", "reviews", "notifications"];
+
     try {
+      // التحقق من وجود الجداول أولاً قبل المحاولة في القراءة
+      for (const table of requiredTables) {
+        const exists = await this.checkTableExists(table);
+        if (!exists) {
+          this.missingTables.push(table);
+        }
+      }
+
+      if (this.missingTables.length > 0) {
+        this.dbNotInitialized = true;
+        console.error("⚠️ الجداول التالية مفقودة في قاعدة البيانات:", this.missingTables.join(", "));
+        this.showInitErrorNotification();
+        this.ready = true;
+        this.readyCallbacks.forEach(cb => cb());
+        return;
+      }
+
       // تحميل الإعدادات
       const { data: settingsRows } = await this.supabase.from("settings").select("data").single();
       if (settingsRows?.data) {

@@ -1,4 +1,4 @@
-﻿// نظام المصادقة والحسابات - يدير الجلسات والتحقق من المدخلات
+// نظام المصادقة والحسابات - يدير الجلسات والتحقق من المدخلات
 
 class AuthSystem {
   constructor() {
@@ -15,6 +15,11 @@ class AuthSystem {
   }
 
   login(email, password, rememberMe = false) {
+    // التحقق من تهيئة قاعدة البيانات أولاً لمنع رسائل الخطأ المضللة
+    if (window.supabaseDB && window.supabaseDB.dbNotInitialized) {
+      throw new Error("فشل تسجيل الدخول: قاعدة بيانات Supabase غير مهيأة. يرجى تهيئة الجداول باستخدام ملف SQL أولاً.");
+    }
+
     const users = window.db.getUsers();
     const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
 

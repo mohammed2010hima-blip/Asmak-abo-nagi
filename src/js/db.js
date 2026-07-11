@@ -1,4 +1,4 @@
-﻿// قاعدة البيانات الهجينة للمطعم
+// قاعدة البيانات الهجينة للمطعم
 // القراءة: localStorage (سريعة ومتزامنة) | الكتابة: localStorage + Supabase في الخلفية
 // يعتمد على supabase-config.js الذي يُحمَّل قبله في index.html
 
@@ -210,7 +210,7 @@ const DEFAULT_PRODUCTS = [
 const DEFAULT_USERS = [
   {
     id: "u1",
-    email: "admin@abunaji.com",
+    email: "admin@elborj.com",
     password: "admin123",
     role: "admin",
     name: "أحمد أسماك أبو ناجي (المدير)",
